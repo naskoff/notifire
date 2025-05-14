@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Provider;
+namespace App\Services\Notification\Provider;
 
-use App\Services\NotificationProviderInterface;
-use App\Services\NotificationTemplateInterface;
+use App\Services\Notification\NotificationProviderInterface;
+use App\Services\Notification\NotificationTemplateInterface;
 
 final class OneSignalNotificationService implements NotificationProviderInterface
 {

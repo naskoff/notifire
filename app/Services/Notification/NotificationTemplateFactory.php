@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Services\Notification;
 
-use App\Services\Template\MatchFinishTemplate;
-use App\Services\Template\MatchHalfTimeTemplate;
-use App\Services\Template\MatchStartTemplate;
+use App\Services\Notification\Template\MatchFinishTemplate;
+use App\Services\Notification\Template\MatchHalfTimeTemplate;
+use App\Services\Notification\Template\MatchStartTemplate;
 
-final class NotificationService
+final class NotificationTemplateFactory
 {
     const TEMPLATE_MATCH_START = 'match_start';
     const TEMPLATE_MATCH_HALF_TIME = 'match_half_time';

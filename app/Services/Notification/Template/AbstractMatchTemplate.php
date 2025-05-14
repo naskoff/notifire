@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Template;
+namespace App\Services\Notification\Template;
 
-use App\Services\NotificationTemplateInterface;
+use App\Services\Notification\NotificationTemplateInterface;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,14 +16,10 @@ abstract readonly class AbstractMatchTemplate implements NotificationTemplateInt
 
     public static function fromRequest(array $payload): ?self
     {
-        $validated = Validator::make($payload, [
-            'home_team' => ['required', 'string'],
-            'away_team' => ['required', 'string'],
-            'home_score' => ['required', 'int'],
-        ]);
+        $validated = Validator::make($payload, static::getRules());
 
         if ($validated->fails()) {
-            Log::critical('Data missing from payload', ['errors' => $validated->errors()]);
+            Log::critical('Data missing from payload', ['errors' => $validated->messages()->toArray()]);
 
             return null;
         }
@@ -31,7 +27,7 @@ abstract readonly class AbstractMatchTemplate implements NotificationTemplateInt
         return new static(data: $validated->validated());
     }
 
-    public function getRules(): array
+    public static function getRules(): array
     {
         return [
             'home_team' => ['required', 'string'],
@@ -39,7 +35,7 @@ abstract readonly class AbstractMatchTemplate implements NotificationTemplateInt
         ];
     }
 
-    public function getData(): array
+    public function getFormattedData(): array
     {
         return $this->data;
     }
