@@ -11,7 +11,9 @@ use App\Services\Notification\Template\MatchStartTemplate;
 final class NotificationTemplateFactory
 {
     const TEMPLATE_MATCH_START = 'match_start';
+
     const TEMPLATE_MATCH_HALF_TIME = 'match_half_time';
+
     const TEMPLATE_MATCH_FINISH = 'match_finish';
 
     public static function createTemplateFromRequest(array $payload): ?NotificationTemplateInterface

@@ -9,7 +9,5 @@ use App\Services\Notification\NotificationTemplateInterface;
 
 final class OneSignalNotificationService implements NotificationProviderInterface
 {
-    public function send(NotificationTemplateInterface $template): void
-    {
-    }
+    public function send(NotificationTemplateInterface $template): void {}
 }

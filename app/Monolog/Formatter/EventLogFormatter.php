@@ -14,7 +14,7 @@ final class EventLogFormatter extends LineFormatter
         $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 
         $record['extra']['host'] = gethostname() ?? 'php-cli';
-        $record['extra']['trace'] = $backtrace['0']['file'] . ':' . $backtrace['0']['line'];
+        $record['extra']['trace'] = $backtrace['0']['file'].':'.$backtrace['0']['line'];
 
         return parent::format($record);
     }

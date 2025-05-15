@@ -4,6 +4,4 @@ declare(strict_types=1);
 
 namespace App\Services\Notification\Template;
 
-final readonly class MatchHalfTimeTemplate extends AbstractMatchTemplate
-{
-}
+final readonly class MatchHalfTimeTemplate extends AbstractMatchTemplate {}

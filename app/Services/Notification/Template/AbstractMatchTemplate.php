@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 abstract readonly class AbstractMatchTemplate implements NotificationTemplateInterface
 {
-    public function __construct(protected array $data)
-    {
-    }
+    public function __construct(protected array $data) {}
 
     public static function fromRequest(array $payload): ?self
     {
