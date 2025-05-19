@@ -6,9 +6,9 @@ namespace App\Services\Notification;
 
 interface NotificationTemplateInterface
 {
-    public static function fromRequest(array $payload): ?self;
+    public function fromRequest(array $payload): ?self;
 
-    public static function getRules(): array;
+    public function getRules(): array;
 
     public function getFormattedData(): array;
 }

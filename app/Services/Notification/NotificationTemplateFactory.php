@@ -18,11 +18,17 @@ final class NotificationTemplateFactory
 
     public static function createTemplateFromRequest(array $payload): ?NotificationTemplateInterface
     {
-        return match ($payload['event_type'] ?? null) {
-            self::TEMPLATE_MATCH_START => MatchStartTemplate::fromRequest($payload),
-            self::TEMPLATE_MATCH_HALF_TIME => MatchHalfTimeTemplate::fromRequest($payload),
-            self::TEMPLATE_MATCH_FINISH => MatchFinishTemplate::fromRequest($payload),
+        $template = match ($payload['event_type'] ?? null) {
+            self::TEMPLATE_MATCH_START => MatchStartTemplate::class,
+            self::TEMPLATE_MATCH_HALF_TIME => MatchHalfTimeTemplate::class,
+            self::TEMPLATE_MATCH_FINISH => MatchFinishTemplate::class,
             default => null,
         };
+
+        if ($template) {
+            return (new $template($payload))->fromRequest($payload);
+        }
+
+        return null;
     }
 }

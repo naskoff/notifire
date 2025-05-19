@@ -12,9 +12,9 @@ abstract readonly class AbstractMatchTemplate implements NotificationTemplateInt
 {
     public function __construct(protected array $data) {}
 
-    public static function fromRequest(array $payload): ?self
+    public function fromRequest(array $payload): ?self
     {
-        $validated = Validator::make($payload, static::getRules());
+        $validated = Validator::make($payload, $this->getRules());
 
         if ($validated->fails()) {
             Log::critical('Data missing from payload', ['errors' => $validated->messages()->toArray()]);
@@ -25,7 +25,7 @@ abstract readonly class AbstractMatchTemplate implements NotificationTemplateInt
         return new static(data: $validated->validated());
     }
 
-    public static function getRules(): array
+    public function getRules(): array
     {
         return [
             'home_team' => ['required', 'string'],
